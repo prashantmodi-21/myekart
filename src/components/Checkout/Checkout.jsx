@@ -5,7 +5,6 @@ import PaymentForm from './CheckoutForm/PaymentForm'
 import {commerce} from '../../lib/Commerce'
 import { Link } from 'react-router-dom'
 const Checkout = ({cart, onCheckout, order, errorMsg }) => {
-  console.log(order, errorMsg)
     const [activeStep, setActiveStep] = useState(0)
     const [userInfo, setUserInfo] = useState(null)
     const [token, setToken] = useState(null)

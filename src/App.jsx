@@ -11,18 +11,25 @@ import {
 import Checkout from './components/Checkout/Checkout'
 
 function App() {
+  const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState({})
   const [order, setOrder] = useState({})
   const [errorMsg, setErrorMsg] = useState('')
-  const [sortQuery, setSortQuery] = useState()
+  const [sortQuery, setSortQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState([])
+
+  const fetchCategories = async()=>{
+    const {data} = await commerce.categories.list()
+    setCategories(data)
+  }
+
   const fetchProducts = async()=>{
-    if(sortQuery){
-      const {data} = await commerce.products.list({sortBy: sortQuery})
-      setProducts(data)
-      console.log(sortQuery)
-    }else{
+    if(sortQuery === ''){
       const {data} = await commerce.products.list()
+      setProducts(data)
+    }else{
+      const {data} = await commerce.products.list({sortBy: sortQuery})
       setProducts(data)
     }
   }
@@ -69,7 +76,12 @@ function App() {
   const chgSort = (value)=>{
     setSortQuery(value)
   }
+  const handleCategories = (value)=>{
+    
+  }
+
   useEffect(()=>{
+    fetchCategories()
     fetchProducts()
     fetchCart()
   }, [sortQuery])
@@ -80,7 +92,7 @@ function App() {
       <CssBaseline/>
         <Navbar items={cart.total_items}/>
       <Routes>
-        <Route path='/' element={<Products products={products} addToCart={addToCart} sortValue={chgSort}/>}/>
+        <Route path='/' element={<Products categories={categories} products={products} addToCart={addToCart} sortValue={chgSort} selectValue={sortQuery} selectCategory={handleCategories}/>}/>
         <Route path='/cart' element={<Cart cart={cart} resetCart={resetCart} removeItem={removeItem} updateCart={updateCart}/>}/>
         <Route path='/checkout' element={<Checkout cart={cart} onCheckout={handleCheckout} order={order} errorMsg={errorMsg}/>}/>
       </Routes>
