@@ -17,12 +17,12 @@ const Products = ({categories, products, addToCart, sortValue, selectValue, sele
     </Select></FormControl>
 
     <FormControl sx={{width: '160px', marginTop: '1rem'}}>
-      <InputLabel id="demo-simple-select-label">Category</InputLabel>
+      <InputLabel id="demo-multiple-select-label">Category</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="demo-multiple-select-label"
+        id="demo-multiple-checkbox"
         label="Category"
-      >{categories.map((category)=>(<MenuItem key={category.id} onClick={()=>selectCategory(category.slug)}><Checkbox checked={selectedCategory.includes(category.slug)}/><ListItemText primary={category.name}/></MenuItem>))}
+      >{categories?.length > 0 && categories.map((category)=>(<MenuItem key={category.id} ><Checkbox checked={selectedCategory.includes(category.slug)} disabled={selectedCategory.length <= 1 ? false : true} onClick={()=>selectCategory(category.slug)}/><ListItemText primary={category.name}/></MenuItem>))}
       </Select>
     </FormControl></>}
     </Stack>

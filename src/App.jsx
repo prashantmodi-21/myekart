@@ -96,7 +96,6 @@ function App() {
     fetchProducts()
     fetchCart()
   }, [sortQuery, selectedCategory])
-  console.log(selectedCategory)
   return (
     <>
     <BrowserRouter>

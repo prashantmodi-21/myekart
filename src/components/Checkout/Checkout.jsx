@@ -12,7 +12,7 @@ const Checkout = ({cart, onCheckout, order, errorMsg }) => {
     const moveForward = () => setActiveStep(activeStep + 1)
     const steps = ['Shipping Address', 'Payments Details']
     const OdConfirmation = () =>(
-      order ? <div>
+      order.id ? <div>
         <Typography variant='h5' gutterBottom>Order Confirmed</Typography>
         <Typography variant='body2'>Order Id: {order.id}</Typography>
       </div> : <div>

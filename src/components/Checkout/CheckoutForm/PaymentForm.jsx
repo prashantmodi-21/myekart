@@ -1,9 +1,6 @@
 import React from 'react'
 import Review from './Review'
-import { loadStripe } from '@stripe/stripe-js'
-import { Button, Divider, Typography } from '@mui/material'
-import {Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js'
-const stripePromise = loadStripe('pk_test_51NwMGqSJqDLz6xRIEkXCVejBLJNdj2sSQyp3WqyOYs9HvCOC3v3icchxMlDWwlWXzmzBJddzWerGDysyUBJ8CLA000LX8pFMkw')
+import { Button, Divider} from '@mui/material'
 const PaymentForm = ({userInfo, cart, token, next, prev, onCheckout}) => {
  const PaymentOptions = () =>{
   const handlesubmit = async(e) =>{
