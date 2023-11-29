@@ -1,7 +1,7 @@
 import { Divider, List, ListItem, ListItemText, Typography } from '@mui/material'
 import React from 'react'
 
-const Review = ({items}) => {
+const Review = ({items, userInfo}) => {
   return (
     <>
     <Typography variant='h5' sx={{margin: '1rem 0'}}>Review Cart</Typography> 
@@ -13,10 +13,14 @@ const Review = ({items}) => {
         </ListItem>
         ))}
         <Divider/>
+        {userInfo.country === "IN" ? 
         <ListItem>
             <ListItemText>Subtotal:</ListItemText>
             <Typography variant='h6'>{items.subtotal.formatted_with_symbol}</Typography>
-        </ListItem>
+        </ListItem> : <ListItem>
+            <ListItemText>Subtotal + Shipping:</ListItemText>
+            <Typography variant='h6'>{items.subtotal.formatted_with_symbol} + 250</Typography>
+        </ListItem>}
     </List>
     </>
   )

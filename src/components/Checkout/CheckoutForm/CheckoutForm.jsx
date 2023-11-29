@@ -1,6 +1,6 @@
-import { Button, Grid, InputLabel, MenuItem, OutlinedInput, Select, FormControl, CircularProgress } from '@mui/material';
+import { Button, Grid, InputLabel, MenuItem, OutlinedInput, Select, FormControl, CircularProgress, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import TextInput from './CustomTextField'
 import { commerce } from '../../../lib/Commerce';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,7 @@ const CheckoutForm = ({token, user}) => {
   return (
     <div style={{width: '400px', marginTop: '1rem'}}>
       <FormProvider {...methods}>
-      {!option ? <CircularProgress/> : <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
         <TextInput type="text" name='fname' label="First Name" />
         <TextInput type="text" name='lname' label="Last Name" />
@@ -104,11 +104,11 @@ const CheckoutForm = ({token, user}) => {
       </FormControl>
        </Grid>
       </Grid>
-      <div style={{marginTop: '2rem', display: 'flex', justifyContent: 'space-between'}}>
+      <Box style={{marginTop: '2rem', display: 'flex', justifyContent: 'space-between'}}>
         <Button component={Link} to='/cart' variant='contained' color='error' sx={{marginRight: '1rem'}}>Back to Cart</Button>
         <Button type="submit" variant='contained' >Submit</Button>
-      </div>
-    </form>}
+      </Box>
+    </form>
     </FormProvider>
     </div>
   )

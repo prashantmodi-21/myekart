@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, ListItemText, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Box, Checkbox, CircularProgress, Container, FormControl, FormControlLabel, Grid, InputLabel, ListItemText, MenuItem, Select, Stack, Typography } from '@mui/material'
 import Product from './Product/Product'
 const Products = ({categories, products, addToCart, sortValue, selectValue, selectCategory, selectedCategory}) => {
   const sortMenu = ['name', 'created', 'updated', 'price']
@@ -31,7 +31,7 @@ const Products = ({categories, products, addToCart, sortValue, selectValue, sele
       <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
         <Product product={product} handleCart={addToCart}/>
       </Grid>
-      )) : <Typography variant='h4' sx={{marginTop: 2}}>No Product Available</Typography>}
+      )) : <Typography variant='h4' sx={{margin: '1rem'}}>Products Not Available</Typography>}
     </Grid>
     </Container>
   )

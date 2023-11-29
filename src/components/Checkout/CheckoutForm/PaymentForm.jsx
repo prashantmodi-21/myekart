@@ -25,10 +25,9 @@ const PaymentForm = ({userInfo, cart, token, next, prev, onCheckout}) => {
       }
       onCheckout(token.id, orderInfo)
       next()
-    
   }
   return(
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem'}}>
         <Button variant='contained' color='error' onClick={()=>prev()}>Back to Shipping</Button>
         <Button type='submit' variant='contained' onClick={(e)=>handlesubmit(e)}>Next</Button>
       </div>
@@ -37,7 +36,7 @@ const PaymentForm = ({userInfo, cart, token, next, prev, onCheckout}) => {
   
   return (
     <>
-    <Review items={cart}/>
+    <Review items={cart} userInfo={userInfo}/>
     <Divider/>
     <PaymentOptions/>
     </>

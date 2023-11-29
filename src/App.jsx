@@ -25,11 +25,11 @@ function App() {
   }
 
   const fetchProducts = async()=>{
-    if(selectedCategory.length > 0){
-      const {data} = await commerce.products.list({category_slug: selectedCategory})
-      setProducts(data)
-    }else if(sortQuery === ''){
+    if(selectedCategory.length === 0 && sortQuery === ''){
       const {data} = await commerce.products.list()
+      setProducts(data)
+    }else if(selectedCategory.length > 0){
+      const {data} = await commerce.products.list({category_slug: selectedCategory})
       setProducts(data)
     }else{
       const {data} = await commerce.products.list({sortBy: sortQuery})
@@ -47,7 +47,6 @@ function App() {
   }
 
   const resetCart = async() =>{
-    console.log('Empty Cart')
     setCart(await commerce.cart.empty())
   }
   
