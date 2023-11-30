@@ -22,7 +22,7 @@ const Products = ({categories, products, addToCart, sortValue, selectValue, sele
         labelId="demo-multiple-select-label"
         id="demo-multiple-checkbox"
         label="Category"
-      >{categories?.length > 0 && categories.map((category)=>(<MenuItem key={category.id} ><Checkbox checked={selectedCategory.includes(category.slug)} disabled={selectedCategory.length <= 1 ? false : true} onClick={()=>selectCategory(category.slug)}/><ListItemText primary={category.name}/></MenuItem>))}
+      >{categories?.length > 0 && categories.map((category)=>(<MenuItem key={category.id} ><Checkbox checked={selectedCategory.includes(category.slug)} disabled={selectedCategory.length < 1 || selectedCategory.includes(category.slug) ? false : true} onClick={()=>selectCategory(category.slug)}/><ListItemText primary={category.name}/></MenuItem>))}
       </Select>
     </FormControl></>}
     </Stack>

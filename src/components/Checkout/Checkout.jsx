@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Container, Grid, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Container, Grid, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import CheckoutForm from './CheckoutForm/CheckoutForm'
 import PaymentForm from './CheckoutForm/PaymentForm'
@@ -12,13 +12,13 @@ const Checkout = ({cart, onCheckout, order, errorMsg }) => {
     const moveForward = () => setActiveStep(activeStep + 1)
     const steps = ['Shipping Address', 'Payments Details']
     const OdConfirmation = () =>(
-      order && <><div>
-        <Typography variant='h5' gutterBottom>Order Confirmed</Typography>
-        <Typography variant='body2'>Order Id: {order.id}</Typography>
-      </div><div>
+      order.id ? <><Box sx={{marginTop: '1rem'}}>
+        <Typography variant='h5' gutterBottom>Order {!errorMsg ? "Confirmed" : "Failed"}</Typography>
+        <Typography variant='body2'>OrderId: {order.id}</Typography>
+      </Box><Box>
         <Typography variant='h5' sx={{margin: '1rem 0'}}>{errorMsg}</Typography>
-        <Button variant='contained' component={Link} to='/cart'>Back to Cart</Button>
-      </div></>
+        <Button variant='contained' component={Link} to='/'>Back to Home</Button>
+      </Box></> : <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}><CircularProgress/></Box>
       ) 
     const setUser = (user) =>{
       setUserInfo(user)

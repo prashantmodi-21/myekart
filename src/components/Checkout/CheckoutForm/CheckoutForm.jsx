@@ -11,7 +11,17 @@ const CheckoutForm = ({token, user}) => {
     const [state, setState] = useState('')
     const [options, setOptions] = useState([])
     const [option, setOption] = useState('')
-    const methods = useForm()
+    const methods = useForm({
+      defaultValues: {
+        fname: '',
+        lname: '',
+        email: '',
+        mobile: '',
+        address: '',
+        city: '',
+        pincode: ''
+      }
+    })
     const onSubmit = data => user({...data, country, state, option});
     const fetchCountries = async()=>{
       const {countries} = await commerce.services.localeListShippingCountries(token.id)

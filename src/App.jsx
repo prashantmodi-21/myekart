@@ -84,7 +84,7 @@ function App() {
       const categoryValue = (element) => element === value
       const categoryIndex = selectedCategory.findIndex(categoryValue)
       selectedCategory.splice(categoryIndex, 1)
-      setSelectedCategory(selectedCategory)
+      setSelectedCategory([...selectedCategory])
     }else{
       setSelectedCategory([...selectedCategory, value])
     }
