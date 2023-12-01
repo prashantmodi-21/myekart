@@ -1,10 +1,10 @@
 import React from 'react'
-import { Box, Checkbox, CircularProgress, Container, FormControl, FormControlLabel, Grid, InputLabel, ListItemText, MenuItem, Select, Stack, Typography } from '@mui/material'
+import {Box, Checkbox, CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import Product from './Product/Product'
-const Products = ({categories, products, addToCart, sortValue, selectValue, selectCategory, selectedCategory}) => {
+const Products = ({categories, products, addToCart, sortValue, selectValue, selectCategory, selectedCategory, loader}) => {
   const sortMenu = ['name', 'created', 'updated', 'price']
   return (
-    <Container>
+    loader ? <Box sx={{width: '100%', height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><CircularProgress/></Box> : <Container>
       <Stack direction='row' justifyContent='space-between'>
         {products?.length > 0 && <><FormControl sx={{width: '160px', marginTop: '1rem'}}><InputLabel id="demo-simple-select-label">Sort By</InputLabel><Select
       labelId="demo-simple-select-label"
@@ -16,13 +16,14 @@ const Products = ({categories, products, addToCart, sortValue, selectValue, sele
       {sortMenu.map((item, i)=>(<MenuItem key={i} value={item}>{item}</MenuItem>))}
     </Select></FormControl>
 
-    <FormControl sx={{width: '160px', marginTop: '1rem'}}>
+    <FormControl sx={{width: '200px', marginTop: '1rem'}}>
       <InputLabel id="demo-multiple-select-label">Category</InputLabel>
       <Select
         labelId="demo-multiple-select-label"
         id="demo-multiple-checkbox"
         label="Category"
-      >{categories?.length > 0 && categories.map((category)=>(<MenuItem key={category.id} ><Checkbox checked={selectedCategory.includes(category.slug)} disabled={selectedCategory.length < 1 || selectedCategory.includes(category.slug) ? false : true} onClick={()=>selectCategory(category.slug)}/><ListItemText primary={category.name}/></MenuItem>))}
+        value={selectedCategory}
+      >{categories?.length > 0 && categories.map((category)=>(<MenuItem key={category.id} value={category.slug}><Checkbox checked={selectedCategory.includes(category.slug)} disabled={selectedCategory.length < 1 || selectedCategory.includes(category.slug) ? false : true} onClick={()=>selectCategory(category.slug)}/>{category.name}</MenuItem>))}
       </Select>
     </FormControl></>}
     </Stack>
