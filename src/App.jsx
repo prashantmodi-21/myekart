@@ -1,4 +1,3 @@
-import './App.css'
 import { Cart, Navbar, Products } from './components/index'
 import { CssBaseline, StyledEngineProvider } from '@mui/material'
 import {commerce} from './lib/Commerce'
@@ -17,7 +16,8 @@ function App() {
   const [order, setOrder] = useState({})
   const [errorMsg, setErrorMsg] = useState('')
   const [sortQuery, setSortQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [loader, setLoader] = useState(true)
 
   const fetchCategories = async()=>{
     const {data} = await commerce.categories.list()
@@ -79,18 +79,21 @@ function App() {
     setSortQuery(value)
   }
   const handleCategories = (value)=>{
-    const categoryExist = selectedCategory.find((category)=> category === value)
+    const categoryExist = selectedCategory.includes(value)
     if(categoryExist){
-      const categoryValue = (element) => element === value
-      const categoryIndex = selectedCategory.findIndex(categoryValue)
-      selectedCategory.splice(categoryIndex, 1)
-      setSelectedCategory([...selectedCategory])
+      setSelectedCategory(selectedCategory.replace(value, ''))
     }else{
-      setSelectedCategory([...selectedCategory, value])
+      setSelectedCategory(value)
     }
+  }
+  const handleLoader = (value)=>{
+      setTimeout(() => {
+        setLoader(false)
+      }, 1500);
   }
 
   useEffect(()=>{
+    handleLoader()
     fetchCategories()
     fetchProducts()
     fetchCart()
@@ -102,8 +105,8 @@ function App() {
       <CssBaseline/>
         <Navbar items={cart.total_items}/>
       <Routes>
-        <Route path='/' element={<Products categories={categories} products={products} addToCart={addToCart} sortValue={chgSort} selectValue={sortQuery} selectCategory={handleCategories} selectedCategory={selectedCategory}/>}/>
-        <Route path='/cart' element={<Cart cart={cart} resetCart={resetCart} removeItem={removeItem} updateCart={updateCart}/>}/>
+        <Route path='/' element={<Products categories={categories} products={products} addToCart={addToCart} sortValue={chgSort} selectValue={sortQuery} selectCategory={handleCategories} selectedCategory={selectedCategory} loader={loader} handleLoader={handleLoader}/>}/>
+        <Route path='/cart' element={<Cart cart={cart} resetCart={resetCart} removeItem={removeItem} updateCart={updateCart} loader={loader} handleLoader={handleLoader}/>}/>
         <Route path='/checkout' element={<Checkout cart={cart} onCheckout={handleCheckout} order={order} errorMsg={errorMsg}/>}/>
       </Routes>
     </StyledEngineProvider>

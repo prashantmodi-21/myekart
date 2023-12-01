@@ -1,9 +1,9 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
+import React, { useEffect } from 'react'
 import CartItem from './CartItem/CartItem'
 import { Link } from 'react-router-dom'
 
-const Cart = ({cart, resetCart, removeItem, updateCart}) => {
+const Cart = ({cart, resetCart, removeItem, updateCart, loader}) => {
   const EmptyCart = () =>(
     <Box>
       <Typography variant='h5'>Cart is Empty. <Link to='/'>Shop Now</Link></Typography>

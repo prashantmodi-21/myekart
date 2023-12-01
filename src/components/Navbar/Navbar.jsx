@@ -6,7 +6,7 @@ import './style.css'
 import { Link } from 'react-router-dom';
 const Navbar = ({items}) => {
   return (
-    <AppBar color='primary' position='static'>
+    <AppBar position='static'>
         <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Typography variant='h6'  className='logo' component={Link} to='/'><LocalMallIcon sx={{marginRight: 1}}/>MyEkart</Typography>
             <IconButton aria-label='cart' component={Link} to='/cart'>
