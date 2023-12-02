@@ -76,7 +76,11 @@ function App() {
     }
   }
   const chgSort = (value)=>{
-    setSortQuery(value)
+    if(value === sortQuery){
+      setSortQuery(sortQuery.replace(value, ''))
+    }else{
+      setSortQuery(value)
+    }
   }
   const handleCategories = (value)=>{
     const categoryExist = selectedCategory.includes(value)
@@ -86,10 +90,10 @@ function App() {
       setSelectedCategory(value)
     }
   }
-  const handleLoader = (value)=>{
+  const handleLoader = ()=>{
       setTimeout(() => {
         setLoader(false)
-      }, 1500);
+      }, 2000);
   }
 
   useEffect(()=>{

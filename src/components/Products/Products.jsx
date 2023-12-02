@@ -10,10 +10,9 @@ const Products = ({categories, products, addToCart, sortValue, selectValue, sele
       labelId="demo-simple-select-label"
       id="demo-simple-select"
       label="Sort By"
-      onChange={(e)=>sortValue(e.target.value)}
       value={selectValue}
     >
-      {sortMenu.map((item, i)=>(<MenuItem key={i} value={item}>{item}</MenuItem>))}
+      {sortMenu.map((item, i)=>(<MenuItem key={i} value={item} onClick={()=>sortValue(item)}>{item.slice(0, 1).toUpperCase()+item.substring(1)}</MenuItem>))}
     </Select></FormControl>
 
     <FormControl sx={{width: '200px', marginTop: '1rem'}}>
