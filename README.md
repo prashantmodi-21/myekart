@@ -1,8 +1,13 @@
-# React + Vite
+# MyEkart - A Headless Ecommerce Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### [Live Site](https://myekart-mh7h.onrender.com/)
 
-Currently, two official plugins are available:
+![MyEkart - Home](https://i.postimg.cc/xC5Db6Yh/home-myekart.png) 
+![MyEkart - Cart](https://i.postimg.cc/0jKTHP7R/cart-myekart.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
+This is a Ecommerce Application Developed using React.js, Material UI and Commercejs. It is Properly Functional and Ready to take Orders
+
+Local Setup:
+
+- Run ```npm i``` for packages installation and ```npm run dev``` to run application locally
